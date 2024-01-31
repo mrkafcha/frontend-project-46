@@ -1,4 +1,4 @@
-import getDiff from '../src/index.js';
+import genDiff from '../src/index.js';
 
 const expected = `{
   - follow: false
@@ -9,6 +9,6 @@ const expected = `{
   + verbose: true
 }`;
 
-test('stylish compare two JSON files and generate diff', () => {
-  expect(getDiff('file1.json', 'file2.json')).toEqual(expected);
+test('compare two JSON files', () => {
+  expect(genDiff('__fixtures__/file1.json', '__fixtures__/file2.json')).toEqual(expected);
 });
