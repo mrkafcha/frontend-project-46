@@ -1,5 +1,3 @@
-import * as path from 'path';
-import { readFileSync } from 'node:fs';
 import _ from 'lodash';
 
 const сomparisonFile = (file1, file2) => {
@@ -21,9 +19,4 @@ const сomparisonFile = (file1, file2) => {
   return `{${result}\n}`;
 };
 
-const getDiff = (filepath1, filepath2) => {
-  const file1 = JSON.parse(readFileSync(path.resolve(process.cwd(), filepath1)));
-  const file2 = JSON.parse(readFileSync(path.resolve(process.cwd(), filepath2)));
-  return сomparisonFile(file1, file2);
-};
-export default getDiff;
+export default сomparisonFile;
