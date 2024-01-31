@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "description": "My second progect",
-  "bin":{
+  "bin": {
     "gendiff": "bin/gendiff.js"
   },
   "main": "index.js",
@@ -13,6 +13,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commander": "^11.1.0"
+    "commander": "^11.1.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1"
   }
 }
