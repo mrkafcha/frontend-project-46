@@ -41,6 +41,6 @@ const recursive = `{
         }
         fee: 100500
     }
-}`
+}`;
 
 export default recursive;
