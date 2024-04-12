@@ -20,6 +20,6 @@ test('compare yml and JSONE files', () => {
   expect(genDiff('__fixtures__/filepath1.yml', '__fixtures__/filepath2.json')).toEqual(expected);
 });
 
-// test('compare recirsive two JSON files', () => {
-//   expect(genDiff('__fixtures__/file1.json', '__fixtures__/file2.json')).toEqual(recursive);
-// });
+test('compare recirsive two JSON files', () => {
+  expect(genDiff('__fixtures__/file1.json', '__fixtures__/file2.json')).toEqual(recursive);
+});

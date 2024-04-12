@@ -6,8 +6,7 @@ const getIndents = (depth) => {
   return {
     leftIndent: indent.repeat(indentSize - 1),
     rightIndent: indent.repeat(indentSize - 2),
-  }
-  ;
+  };
 };
 
 const renderToString = (value, depth) => {
@@ -16,8 +15,6 @@ const renderToString = (value, depth) => {
   }
   const idents = getIndents(depth);
 
-//   const lines = Object.entries(value)
-//     .map(([key, val]) => `${idents.leftIndent}  ${key}: ${renderToString(val, depth + 1)}`);
   const lines = Object.entries(value).map(([key, val]) => {
     if (!_.isObject(val)) {
       return `${idents.leftIndent}  ${key}: ${val}`;
@@ -25,12 +22,10 @@ const renderToString = (value, depth) => {
 
     return `${idents.leftIndent}  ${key}: ${renderToString(val, depth + 1)}`;
   });
-  // return ['{', ...lines, `${idents.rightIndent}}`].join('\n');
-  return `{\n${lines.join('\n')}\n${idents.rightIndent}}`;
+  return ['{', ...lines, `${idents.rightIndent}}`].join('\n');
 };
 
 export default (tree) => {
-  
   const iter = (node, depth) => {
     const idents = getIndents(depth);
     const result = node.map(({
@@ -47,12 +42,13 @@ export default (tree) => {
         case 'added':
           return `${idents.leftIndent}+ ${key}: ${renderValue}`;
         case 'nested':
-          return `${idents.leftIndent}  ${key}: {\n${iter(value, depth + 1)}\n${idents.rightIndent}}`;
+          return `${idents.leftIndent}  ${key}: ${iter(value, depth + 1)}`;
         default:
           throw new Error('This type is not in use.');
       }
     });
-    return result.join('\n');
+    // return result.join('\n');
+    return ['{', ...result, `${idents.rightIndent}}`].join('\n');
   };
-  return `{\n${iter(tree, 1)}\n}`;
+  return iter(tree, 1);
 };
