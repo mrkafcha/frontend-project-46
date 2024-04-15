@@ -1,25 +1,59 @@
+import url from 'url';
+import path from 'path';
+import fs from 'node:fs';
 import genDiff from '../src/index.js';
-import recursive from '../__fixtures__/recursiveCompare.js';
 
-const expected = `{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}`;
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-test('compare two JSON files', () => {
-  expect(genDiff('__fixtures__/filepath1.json', '__fixtures__/filepath2.json')).toEqual(expected);
-});
-test('compare two yml files', () => {
-  expect(genDiff('__fixtures__/filepath1.yml', '__fixtures__/filepath2.yml')).toEqual(expected);
-});
-test('compare yml and JSONE files', () => {
-  expect(genDiff('__fixtures__/filepath1.yml', '__fixtures__/filepath2.json')).toEqual(expected);
+const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
+
+test('stylish comparison two json files', () => {
+  const file1 = getFixturePath('file1.json');
+  const file2 = getFixturePath('file2.json');
+  const expected = readFile('resultStylish.txt');
+  expect(genDiff(file1, file2)).toEqual(expected);
 });
 
-test('compare recirsive two JSON files', () => {
-  expect(genDiff('__fixtures__/file1.json', '__fixtures__/file2.json')).toEqual(recursive);
+test('stylish comparison two yml files', () => {
+  const file1 = getFixturePath('filepath1.yml');
+  const file2 = getFixturePath('filepath2.yml');
+  const expected = readFile('resultStylish.txt');
+  expect(genDiff(file1, file2)).toEqual(expected);
+});
+
+test('stylish comparison yaml and json files', () => {
+  const file1 = getFixturePath('filepath1.yaml');
+  const file2 = getFixturePath('file2.json');
+  const expected = readFile('resultStylish.txt');
+  expect(genDiff(file1, file2)).toEqual(expected);
+});
+
+test('plain comparison two json files', () => {
+  const file1 = getFixturePath('file1.json');
+  const file2 = getFixturePath('file2.json');
+  const expected = readFile('resultPlain.txt');
+  expect(genDiff(file1, file2, 'plain')).toEqual(expected);
+});
+
+test('plain comparison two yml files', () => {
+  const file1 = getFixturePath('filepath1.yml');
+  const file2 = getFixturePath('filepath2.yml');
+  const expected = readFile('resultPlain.txt');
+  expect(genDiff(file1, file2, 'plain')).toEqual(expected);
+});
+
+test('json comparison two json files', () => {
+  const file1 = getFixturePath('file1.json');
+  const file2 = getFixturePath('file2.json');
+  const expected = readFile('resultJson.txt');
+  expect(genDiff(file1, file2, 'json')).toEqual(expected);
+});
+
+test('json comparison two yml files', () => {
+  const file1 = getFixturePath('filepath1.yml');
+  const file2 = getFixturePath('filepath2.yml');
+  const expected = readFile('resultJson.txt');
+  expect(genDiff(file1, file2, 'json')).toEqual(expected);
 });
