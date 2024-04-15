@@ -3,18 +3,18 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/952aa8c3bfeb8187f4aa/maintainability)](https://codeclimate.com/github/mrkafcha/frontend-project-46/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/952aa8c3bfeb8187f4aa/test_coverage)](https://codeclimate.com/github/mrkafcha/frontend-project-46/test_coverage)
 
-## Описание
+# Description
 
-Вычислитель отличий – программа, определяющая разницу между двумя структурами данных.
+Difference Calculator is a program that determines the difference between two data structures.
 
-## Установка:
+# Installation:
 
 ```
  $ make install
 
  $ npm link
 ```
-Минимальные требования для запуска игры :
+System requirements :
 
 ```
  Node.js 21
@@ -22,7 +22,7 @@
  npm 10
 ```
 
-## Пример использования :
+# Usage example :
 
 ```
 Usage: gendiff [options] <filepath1> <filepath2>
@@ -35,3 +35,25 @@ Options:
   -h, --help           display help for command
 ```
 
+
+## stylish comparison :
+```
+gendiff -f stylish __fixtures__/file1.json __fixtures__/file2.json
+```
+or
+```
+gendiff __fixtures__/file1.json __fixtures__/file2.json
+```
+[![asciicast](https://asciinema.org/a/wlLGcPJRLKfrjp4VDmpCLOVPq.svg)](https://asciinema.org/a/wlLGcPJRLKfrjp4VDmpCLOVPq)
+
+## plain comparison :
+```
+gendiff -f plain __fixtures__/file1.json __fixtures__/file2.json
+```
+[![asciicast](https://asciinema.org/a/CvwzFFp3aA25ZOFx2vmilnvYH.svg)](https://asciinema.org/a/CvwzFFp3aA25ZOFx2vmilnvYH)
+
+## json comparison :
+```
+gendiff -f json __fixtures__/file1.json __fixtures__/file2.json
+```
+[![asciicast](https://asciinema.org/a/POS2bRwATWJnkpwsErPl8teXb.svg)](https://asciinema.org/a/POS2bRwATWJnkpwsErPl8teXb)
