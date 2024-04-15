@@ -4,6 +4,9 @@ const renderToString = (value) => {
   if (_.isObject(value)) {
     return '[complex value]';
   }
+  if (typeof value === 'string') {
+    return `'${value}'`;
+  }
   return value;
 };
 
@@ -20,7 +23,7 @@ export default (tree) => {
           case 'deleted':
             return `Property '${keys}${key}' was removed`;
           case 'changed':
-            return `Property '${keys}${key}' was updated. From '${renderToString(value)}' to '${renderToString(newValue)}'`;
+            return `Property '${keys}${key}' was updated. From ${renderToString(value)} to ${renderToString(newValue)}`;
           case 'nested':
             return iter(value, `${keys}${key}.`);
           default:

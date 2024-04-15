@@ -12,7 +12,6 @@ const genDiff = (filepath1, filepath2, format = 'stylish') => {
   const file2 = parsers(readFile(filepath2), getFormat(filepath2));
   const getDiffTree = сomparisonFile(file1, file2);
   const result = dddd(getDiffTree, format);
-  // console.log(result);
 
   return result;
 };
