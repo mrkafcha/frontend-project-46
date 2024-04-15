@@ -4,10 +4,7 @@ const renderToString = (value) => {
   if (_.isObject(value)) {
     return '[complex value]';
   }
-  if (typeof value === 'string') {
-    return `'${value}'`;
-  }
-  return value;
+  return typeof value === 'string' ? `'${value}'` : value;
 };
 
 export default (tree) => {
